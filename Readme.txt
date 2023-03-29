@@ -31,3 +31,12 @@ contract MyContract {
     // Eventos
     event NumberSet(uint256 newNumber);
 }
+
+/////////
+Este contrato define una variable de estado myNumber y una variable de estado myString. También tiene un constructor que acepta un número y una cadena como parámetros y los asigna a las variables de estado correspondientes.
+
+También tiene dos funciones: setNumber y getString. setNumber permite al usuario cambiar el valor de myNumber, mientras que getString devuelve el valor de myString.
+
+El contrato también define un modificador onlyOwner, que se aplica a una función para asegurar que solo el propietario del contrato pueda llamar a esa función.
+
+Finalmente, el contrato define un evento NumberSet que se emite cada vez que se llama a la función setNumber. Este evento registra el nuevo valor de myNumber.
