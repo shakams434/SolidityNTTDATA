@@ -1,54 +1,50 @@
 ////////////////Smart Contract////////////////////
 
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.0;
 
-// Declaración de la versión del compilador de Solidity
-pragma solidity ^0.8.0;
-
-// Declaración del contrato
-contract MiContrato {
+contract Erc20Basic {
     
-    // Variables del contrato
-    uint256 public miVariable;  // una variable pública
+    // Variables públicas del token
+    string public constant name = "Sherrycoin";
+    string public constant symbol = "SHC";
+    uint8 public constant decimals = 18;
     
-    // Eventos
-    event MiEvento(address indexed _from, uint256 indexed _value); // un evento
+    // Crea un mapeo con la cantidad de tokens que cada cuenta posee
+    mapping(address => uint) balances;
     
-    // Constructor
+    // Suministro total del token
+    uint256 totalSupply_ = 1000000000000000000000;
+    
+    // Inicializa el token asignando todo el suministro total al creador del contrato
     constructor() {
-        miVariable = 100; // establece el valor inicial de la variable miVariable en 100
+        balances[msg.sender] = totalSupply_;
     }
     
-    // Funciones del contrato
-    function setVariable(uint256 _newValue) public { // una función pública que actualiza el valor de miVariable
-        miVariable = _newValue; // actualiza el valor de miVariable
-        emit MiEvento(msg.sender, _newValue); // emite un evento MiEvento con el emisor de la transacción y el nuevo valor
+    // Función para obtener el suministro total del token
+    function totalSupply() public view returns(uint256) {
+        return totalSupply_;
+    }
+        
+    // Función para obtener el saldo de una cuenta
+    function balanceOf(address account) public view returns(uint256) {
+        return balances[account];
+    }
+        
+    // Función para transferir tokens
+    function transfer(address recipient, uint256 amount) public returns(bool) {
+        // Comprueba que el remitente tenga suficientes tokens para transferir
+        require(amount <= balances[msg.sender]);
+        // Resta la cantidad de tokens del remitente
+        balances[msg.sender] = balances[msg.sender]-amount;
+        // Agrega la cantidad de tokens al destinatario
+        balances[recipient] = balances[recipient]+amount;
+        // Registra la transferencia de tokens
+        return true;    
     }
     
-    function getVariable() public view returns (uint256) { // una función pública que devuelve el valor actual de miVariable
-        return miVariable; // devuelve el valor actual de miVariable
-    }
 }
 
-/////////EXPLICACIÓN DE LA ESTRUCTURA DEL SMART CONTRACT //////////////////////////////
-
-se comienza colocando como comentario declarando la licencia //SPDX-License-Identifier: MIT
-
-Este contrato sigue la estructura básica de un contrato de Solidity:
-
-Comienza con la declaración de la versión del compilador de Solidity en la primera línea del contrato.
-
-Luego se declara el contrato con su nombre, MiContrato.
-
-Dentro del contrato, se declaran las variables que se utilizarán en el contrato. En este caso, solo hay una variable pública llamada miVariable.
-
-Después de las variables, se declara el evento MiEvento, que se utilizará para registrar información en la blockchain de Ethereum.
-
-A continuación, se declara el constructor del contrato, que se ejecutará cuando el contrato se despliegue en la blockchain.
-
-Después del constructor, se declaran dos funciones públicas: setVariable y getVariable. La función setVariable actualiza el valor de miVariable y emite el evento MiEvento, mientras que la función getVariable devuelve el valor actual de miVariable.
-
-En general, esta es la estructura básica de un contrato inteligente en Solidity.
 
 //////////////////////////// Desplegar el contrato/////////////////////////////////////
 
