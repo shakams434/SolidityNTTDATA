@@ -1,4 +1,4 @@
-Smart Contract
+////////////////Smart Contract////////////////////
 
 //SPDX-License-Identifier: MIT
 
@@ -30,7 +30,8 @@ contract MiContrato {
     }
 }
 
-/////////
+/////////EXPLICACIÓN DE LA ESTRUCTURA DEL SMART CONTRACT //////////////////////////////
+
 se comienza colocando como comentario declarando la licencia //SPDX-License-Identifier: MIT
 
 Este contrato sigue la estructura básica de un contrato de Solidity:
@@ -48,3 +49,16 @@ A continuación, se declara el constructor del contrato, que se ejecutará cuand
 Después del constructor, se declaran dos funciones públicas: setVariable y getVariable. La función setVariable actualiza el valor de miVariable y emite el evento MiEvento, mientras que la función getVariable devuelve el valor actual de miVariable.
 
 En general, esta es la estructura básica de un contrato inteligente en Solidity.
+
+//////////////////////////// Desplegar el contrato/////////////////////////////////////
+
+Para publicar el contrato usar Metamask en la red Testnet de Goerli. Previamente solicitar Ether en algún faucet de Goerli (https://goerlifaucet.com/).
+
+En ENVIROMENT escoger Injected Provider - Metamask, lo cual conectará el IDE de Remix con una billetera de Metamask.
+
+En CONTRACT asegurar que está seleccionado el contrato que se desea publicar
+
+Al hacer clic en Deploy, abrirá un pop-up de Metamask para poder confirmar y firmar la transacción, lo cual hará posible la creación del Smart Contract en el Blockchain.
+
+Cuando la transacción haya terminado, se podrá visualizar dentro de la pestaña de Actividad. Hacer click en Implementación de contrato y se abrirá otra ventana. En dicha ventana hacer click en Ver en el explorador de blockes.
+
