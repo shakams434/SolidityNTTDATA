@@ -1,15 +1,15 @@
 ////////////////Smart Contract////////////////////
 
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.0;
+pragma solidity 0.6.0;
 
 contract Erc20Basic {
     
     // Variables públicas del token
-    string public constant name = "Sherrycoin";
-    string public constant symbol = "SHC";
+    string public constant name = "BitCoin";
+    string public constant symbol = "BTC";
     uint8 public constant decimals = 18;
-    
+
     // Crea un mapeo con la cantidad de tokens que cada cuenta posee
     mapping(address => uint) balances;
     
@@ -17,7 +17,7 @@ contract Erc20Basic {
     uint256 totalSupply_ = 1000000000000000000000;
     
     // Inicializa el token asignando todo el suministro total al creador del contrato
-    constructor() {
+    constructor() public {
         balances[msg.sender] = totalSupply_;
     }
     
@@ -44,6 +44,11 @@ contract Erc20Basic {
     }
     
 }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+NOTAS:
 
 
 //////////////////////////// Desplegar el contrato/////////////////////////////////////
